@@ -12,11 +12,38 @@
 namespace App.Topics.Indexers.T1_1_IntList;
 
 public class IntList
+
 {
-    // Студенту:
-    // 1) Добавьте приватное хранилище (например, List<int> или массив с расширением).
-    // 2) Реализуйте свойство Count.
-    // 3) Реализуйте индексатор this[int index] с семантикой, описанной выше.
-    // 4) Добавьте конструктор(ы) при необходимости.
-    // Примечание: сейчас код преднамеренно пустой — требуется самостоятельная реализация.
+        private List<int> _items;
+
+public IntList()
+{
+    _items = new List<int>();
 }
+
+public int Count => _items.Count;
+
+public int this[int index]
+{
+    get
+    {
+        if (index < 0 || index >= Count)
+            throw new ArgumentOutOfRangeException(nameof(index));
+        return _items[index];
+    }
+    set
+    {
+        if (index < 0 || index > Count)
+            throw new ArgumentOutOfRangeException(nameof(index));
+
+        if (index == Count)
+        {
+            _items.Add(value);
+        }
+        else
+        {
+            _items[index] = value;
+        }
+    }
+}
+    }
